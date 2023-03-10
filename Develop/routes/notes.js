@@ -23,12 +23,12 @@ notes.post("/", (req, res) => {
             note_id: uuid(),
         };
         const noteString = JSON.stringify(newNote);
-        fa.readFile('.db/db.json', 'utf8', (err, data) => {
+        fs.readFile('.db/db.json', 'utf8', (err, data) => {
             if (err) {
                 console.error(err);
             } else {
                 const parsedNotes = JSON.parse(data);
-                parsedNotes.push(newNOte);
+                parsedNotes.push(newNote);
                 fs.writeFile(
                     '.db/db.json',
                     JSON.stringify(parsedNotes, null, 4),
