@@ -3,7 +3,7 @@ const fs = require("fs");
 const uuid = require("../helpers/uuid");
 
 notes.get("/", (req, res) => {
-    fa.readFile('.db/db.json', 'utf8', (err, data) => {
+    fs.readFile('.db/db.json', 'utf8', (err, data) => {
         if (err) {
             console.error(err);
             return res.json([]);
