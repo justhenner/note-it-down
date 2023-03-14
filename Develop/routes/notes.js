@@ -23,19 +23,19 @@ notes.post("/", (req, res) => {
             note_id: uuid(),
         };
         const noteString = JSON.stringify(newNote);
-        fs.readFile('.db/db.json', 'utf8', (err, data) => {
+        fs.readFile('./db/db.json', 'utf8', (err, data) => {
             if (err) {
                 console.error(err);
             } else {
                 const parsedNotes = JSON.parse(data);
                 parsedNotes.push(newNote);
                 fs.writeFile(
-                    '.db/db.json',
+                    './db/db.json',
                     JSON.stringify(parsedNotes, null, 4),
                     (writeErr) =>
                     writeErr
                     ? console.error(writeErr)
-                    :console.log("notes updated successfully!")
+                    : console.log("Note updated successfully!")
                 );
             }
         });
@@ -53,9 +53,10 @@ notes.post("/", (req, res) => {
 });
 
 notes.delete("/:id", (req, res) => {
+    console.log("delete")
     var id = req.params.id
     console.log(id)
-    fs.readFile('.db/db.json', 'utf8', (err, data) => {
+    fs.readFile('./db/db.json', 'utf8', (err, data) => {
         if (err) {
             console.error(err);
         } else {
@@ -65,12 +66,12 @@ notes.delete("/:id", (req, res) => {
             });
             
             fa.writeFile(
-                '.db/db.json',
+                './db/db.json',
                 JSON.stringify(parsedNotes, null, 4), 
                 (writeErr) =>
                 writeErr
                 ? console.error(writeErr)
-                : console.log("note deleted successfully!")
+                : console.log("Note deleted successfully!")
             );
         };
         
